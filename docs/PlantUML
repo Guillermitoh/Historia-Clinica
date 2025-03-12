@@ -1,0 +1,80 @@
+@startuml
+
+' Definición de la clase Paciente
+class Paciente {
+    - String CI
+    - String nombre
+    - String apellidos
+    - String fechaNacimiento
+    - String sexo
+    - double peso
+    - double estatura
+    - String direccion
+    - List<Imagen> imagenes
+    - List<Enfermedad> enfermedades
+
+    + String getCI()
+    + String getNombre()
+    + String getApellidos()
+    + String getFechaNacimiento()
+    + String getSexo()
+    + double getPeso()
+    + double getEstatura()
+    + String getDireccion()
+    + List<Imagen> getImagenes()
+    + List<Enfermedad> getEnfermedades()
+    + void addImagen(Imagen imagen)
+    + void addEnfermedad(Enfermedad enfermedad)
+    + void removeImagen(Imagen imagen)
+    + void removeEnfermedad(Enfermedad enfermedad)
+    + void mostrarDatosPaciente()
+}
+
+' Definición de la clase Imagen
+class Imagen {
+    - String nombreArchivo
+    - String fechaTomada
+    - String tipoImagen
+    - String comentariosDoctor
+
+    + String getNombreArchivo()
+    + String getFechaTomada()
+    + String getTipoImagen()
+    + String getComentariosDoctor()
+}
+
+' Definición de la clase Enfermedad
+class Enfermedad {
+    - String nombreEnfermedad
+    - String fechaDiagnostico
+    - String tratamiento
+
+    + String getNombreEnfermedad()
+    + String getFechaDiagnostico()
+    + String getTratamiento()
+}
+
+' Definición de la clase Hospital
+class Hospital {
+    - List<Paciente> pacientes
+
+    + void mostrarDatosPacientePorCI(String CI)
+    + void addPaciente(Paciente paciente)
+    + void removePaciente(Paciente paciente)
+    + Paciente buscarPacientePorCI(String CI)
+    + List<String> obtenerCIPacientesMasAltos()
+    + long contarMujeresConDengue()
+    + List<Paciente> obtenerPacientesOrdenadosPorNombre()
+    + List<Paciente> obtenerPacientesOrdenadosPorPeso()
+    + void addImagenAPaciente(String CI, Imagen imagen)
+    + void removeImagenDePaciente(String CI, Imagen imagen)
+    + void addEnfermedadAPaciente(String CI, Enfermedad enfermedad)
+    + void removeEnfermedadDePaciente(String CI, Enfermedad enfermedad)
+}
+
+' Relaciones entre las clases
+Paciente "1" *-- "0..*" Imagen : contiene >
+Paciente "1" *-- "0..*" Enfermedad : contiene >
+Hospital "1" *-- "0..*" Paciente : gestiona >
+
+@enduml
